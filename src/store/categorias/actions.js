@@ -51,6 +51,8 @@ export default {
   },
 
   async sendSubcategoria({ commit, dispatch }, data) {
+    console.log(data);
+
     if(data.id === 0){
       return await axios.post('subcategoria', data);
     }

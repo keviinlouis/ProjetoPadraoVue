@@ -42,6 +42,26 @@ export default {
         return response;
     },
 
+  async ativarAdmin({commit, dispatch}, id) {
+    const response = await axios.put('administrador/'+id+'/desbloquear', {});
+
+    if (response.isSuccess()) {
+      await commit('setAdministradorOnList', response.getData());
+    }
+
+    return response;
+  },
+
+  async desativarAdmin({commit, dispatch}, id) {
+    const response = await axios.put('administrador/'+id+'/bloquear', {});
+
+    if (response.isSuccess()) {
+      await commit('setAdministradorOnList', response.getData());
+    }
+
+    return response;
+  },
+
     unsetAdministrador({state}) {
         state.administrador = {
             id: 0,

@@ -11,8 +11,8 @@
                     </v-text-field>
                 </v-flex>
                 <v-flex sm2 xs12>
-                    <v-btn color="success"
-                           @click="openModal"
+                    <v-btn color="primary"
+                           @click="openModal()"
                            class="font-weight-bold"
                            block
                            depressed>
@@ -34,25 +34,25 @@
                             hide-actions
                     >
                         <template slot="items" slot-scope="props">
-                          <tr>
-                              <td >
-                                  <v-btn flat icon @click="props.expanded = !props.expanded">
-                                      <v-icon>
-                                          {{props.expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}
-                                      </v-icon>
-                                  </v-btn>
-                                  {{props.item.nome}}
-                              </td>
-                              <td class="justify-end right align-center pt-2">
-                                  <v-switch
-
-                                          :true-value="1"
-                                          :false-value="2"
-                                          @change="updateStatus(props.item)"
-                                          v-model="props.item.status"
-                                  />
-                              </td>
-                          </tr>
+                            <tr>
+                                <td @click="props.expanded = !props.expanded">
+                                    <v-btn flat icon @click="props.expanded = !props.expanded">
+                                        <v-icon>
+                                            {{props.expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}
+                                        </v-icon>
+                                    </v-btn>
+                                    {{props.item.nome}}
+                                </td>
+                                <td class="justify-end right align-center pt-2">
+                                    <v-switch
+                                            color="red darken-3"
+                                            :true-value="1"
+                                            :false-value="2"
+                                            @change="updateStatus(props.item)"
+                                            v-model="props.item.ativo"
+                                    />
+                                </td>
+                            </tr>
                         </template>
                         <template slot="expand" slot-scope="props">
                             <v-layout row wrap v-for="subcategoria in props.item.subcategorias" :key="subcategoria.id">
@@ -61,7 +61,7 @@
                                 </v-flex>
                                 <v-flex md1>
                                     <v-btn color="success"
-                                           @click="openModal(subcategoria, props.item.id)"
+                                           @click="openModal(subcategoria, props.item)"
                                            class="font-weight-bold"
                                            flat icon>
                                         <v-icon>create</v-icon>
@@ -162,7 +162,7 @@
 
         const data = {
           id: categoria.id,
-          status: categoria.status,
+          ativo: categoria.ativo,
         };
 
         await this.$store.dispatch('categorias/updateCategoria', data);
@@ -171,23 +171,23 @@
       },
 
       async openModal(subcategoria, categoriaId) {
-        if (subcategoria) {
+        if (subcategoria.id) {
           this.subcategoria = subcategoria;
           this.subcategoria.categoria_id = categoriaId;
-        }else{
+        } else {
           this.subcategoria = {
             id: 0,
             categoria_id: 0,
-            nome: ''
-          }
+            nome: '',
+          };
         }
 
         this.showModal = true;
       },
 
-      async removerSubcategoria(id){
-        this.$store.dispatch('categorias/deleteSubcategoria', id)
-      }
+      async removerSubcategoria(id) {
+        this.$store.dispatch('categorias/deleteSubcategoria', id);
+      },
     },
     created() {
       this.$store.dispatch('setTitlePage', 'Categorias');

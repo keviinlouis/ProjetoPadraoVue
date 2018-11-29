@@ -1,11 +1,11 @@
 <template>
-    <v-dialog :value="value" hide-overlay @keydown.esc="close" max-width="500">
+    <v-dialog :value="value" @keydown.esc="close" max-width="500">
         <v-card>
             <v-card-title>
                 <span class="headline">Definir Item</span>
             </v-card-title>
             <v-card-text>
-                <v-layout align-center justify-center row fill-height pt-5>
+                <v-layout row wrap pt-5>
                     <v-flex md5 pa-2>
                         <v-autocomplete
                                 v-model="subcategoria.categoria_id"
@@ -109,6 +109,8 @@
           const text = this.subcategoria.id === 0 ? 'Subcategoria criada com sucesso' : 'Subcategoria editada com sucesso';
 
           this.$store.dispatch('setToast', {text})
+
+          this.$store.dispatch('categorias/loadCategorias');
         }
       },
     },

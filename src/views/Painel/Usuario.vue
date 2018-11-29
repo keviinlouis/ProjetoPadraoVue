@@ -51,7 +51,7 @@
                     </v-avatar>
                 </v-flex>
                 <v-flex md9 class="layout column" mb-1>
-                    <v-flex>{{destinoAtivo.nome}}</v-flex>
+                    <v-flex class="font-weight-bold">{{destinoAtivo.nome}}</v-flex>
                     <v-flex>{{destinoAtivo.data}}</v-flex>
                 </v-flex>
                 <v-flex xs12 style="margin: 0 -30px;">
@@ -70,7 +70,7 @@
                     </v-avatar>
                 </v-flex>
                 <v-flex md9 class="layout column" mb-1>
-                    <v-flex>{{destinoAnterior.nome}}</v-flex>
+                    <v-flex class="font-weight-bold">{{destinoAnterior.nome}}</v-flex>
                     <v-flex>{{destinoAnterior.data}}</v-flex>
                 </v-flex>
                 <v-flex xs12 style="margin: 0 -30px;">

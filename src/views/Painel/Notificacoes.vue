@@ -11,7 +11,7 @@
                     </v-text-field>
                 </v-flex>
                 <v-flex sm2 xs12>
-                    <v-btn color="success"
+                    <v-btn color="primary"
                            @click="goToNewNotificacao"
                            class="font-weight-bold"
                            block
