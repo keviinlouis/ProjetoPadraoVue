@@ -1,0 +1,105 @@
+{
+  "text": {
+    "redefinir_senha": "Enviaremos um email com as instruções para redefinir sua senha!",
+    "identificacao": "Identificação",
+    "indiretos": "Indiretos",
+    "ganhos_rede":"Ganhos da rede",
+    "recurso_nao_disponivel":"Este recurso estará disponivel em breve!.",
+    "equipe_savecash": "Equipe Savecash",
+    "passaporte_nao_cadastrado": "Passaporte não cadastrado"
+  },
+  "page": {
+    "usuarios": {
+      "title": "Usuários",
+      "table": {
+        "headers": {
+          "nome": "Nome"
+        }
+      }
+    },
+    "notificacoes": {
+      "title": "Notificações",
+      "table": {
+        "headers": {
+          "data": "Data",
+          "titulo": "Título do Push"
+        }
+      }
+    }
+  },
+  "toast": {
+    "email_enviado_sucesso": "Email enviado com sucesso!",
+    "senha_redefinida_sucesso": "Senha Redefinida com sucesso!",
+    "erro_conexao": "Erro ao se conectar com o servidor",
+    "selecione_uma_imagem": "Selecione uma imagem",
+    "usuario_atualizado_sucesso": "Usuario atualizado com sucesso!",
+    "token_invalido": "Token Inválido"
+  },
+  "table": {
+    "sem_resultados": "Sem Resultados"
+  },
+  "btn": {
+    "login": "Login",
+    "esqueci_senha": "Esqueci a senha",
+    "redefinir_senha": "Redefinir senha",
+    "alterar_senha": "Alterar senha",
+    "cadastrar": "Cadastre-se",
+    "cancelar": "Cancelar",
+    "enviar": "Enviar",
+    "salvar": "Salvar",
+    "exportar": "Exportar",
+    "suspender": "Suspender",
+    "ativar": "Ativar"
+  },
+  "label": {
+    "email": "Email",
+    "senha": "Senha",
+    "confirmar_senha": "Confirmação Senha",
+    "senha_atual": "Senha Atual",
+    "nova_senha": "Nova Senha",
+    "confirmar_nova_senha": "Confirmação Nova Senha",
+    "nome_completo": "Nome Completo",
+    "procurar": "Procurar",
+    "nome": "Nome",
+    "sobrenome": "Sobrenome",
+    "documento": "CPF, RG ou Passaporte",
+    "data_nascimento": "Data de Nascimento",
+    "telefone": "Telefone",
+    "celular": "Celular",
+    "nome_fantasia": "Nome Fantasia",
+    "cnpj": "CNPJ",
+    "rg": "RG",
+    "passaporte": "Passaporte",
+    "cep": "CEP",
+    "numero": "Número",
+    "complemento": "Complemento",
+    "bairro": "Bairro",
+    "rua": "Rua",
+    "cidade": "Cidade",
+    "estado": "Estado",
+    "endereco": "Endereco",
+    "tipo": "Tipo",
+    "mensagem": "Mensagem",
+    "titulo": "Título"
+  },
+  "validations": {
+    "senha_confirmation": "A confirmação de senha não confere",
+    "cep_nao_encontrado": "CEP inválido"
+  },
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "usuarios": "Usuários",
+    "cupons": "Cupons",
+    "envio_push": "Envio de Push",
+    "admins": "Admins",
+    "configuracoes": "Configurações"
+  },
+  "select": {
+    "selecione_um_estado": "Selecione uma estado"
+  },
+  "dialog": {
+    "alterar_senha": {
+      "title": "Redefinir Senha"
+    }
+  }
+}
