@@ -34,6 +34,14 @@
           "email": "Email"
         }
       }
+    },
+    "categorias": {
+      "title": "Administradores",
+      "table": {
+        "headers": {
+          "nome": "Nome"
+        }
+      }
     }
   },
   "toast": {
@@ -60,7 +68,8 @@
     "suspender": "Suspender",
     "ativar": "Ativar",
     "novo_admin": "Novo Admin",
-    "novo_push": "Novo Push"
+    "novo_push": "Novo Push",
+    "novo_item": "Novo Item"
   },
   "label": {
     "email": "Email",
@@ -103,7 +112,7 @@
     "cupons": "Cupons",
     "envio_push": "Envio de Push",
     "admins": "Admins",
-    "configuracoes": "Configurações"
+    "categorias": "Categorias"
   },
   "select": {
     "selecione_um_estado": "Selecione uma estado"

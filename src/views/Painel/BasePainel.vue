@@ -71,7 +71,7 @@ export default {
   data() {
     return {
       drawer: true,
-      currentRoute: 'dashboard',
+      currentRoute: this.$router.currentRoute.name,
       menus: [
         {
           icon: 'fas fa-tachometer-alt',
@@ -82,11 +82,6 @@ export default {
           icon: 'fa fa-users',
           name: this.$t('sidebar.usuarios'),
           route: 'usuarios',
-        },
-        {
-          icon: 'fa fa-gift',
-          name: this.$t('sidebar.cupons'),
-          route: 'cupons',
         },
         {
           icon: 'fas fa-bell',
@@ -101,17 +96,12 @@ export default {
         },
         {
           icon: 'fas fa-cog',
-          name: this.$t('sidebar.configuracoes'),
-          route: 'configuracoes',
+          name: this.$t('sidebar.categorias'),
+          route: 'categorias',
         },
       ],
     };
   },
-    watch: {
-      '$router': function(newValue){
-          this.currentRoute = newValue.currentRoute.name;
-      }
-    }
 };
 </script>
 

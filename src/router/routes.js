@@ -10,6 +10,7 @@ import Administrador from '@/views/Painel/Administrador.vue';
 import Login from '@/views/Auth/Login.vue';
 import RedefinirSenha from '@/views/Auth/RedefinirSenha.vue';
 import ConfirmarEmail from '@/views/Auth/ConfirmarEmail.vue';
+import Categorias from '@/views/Painel/Categorias';
 
 export default [
   {
@@ -70,15 +71,7 @@ export default [
         },
       },
       {
-        path: '/',
-        name: 'cupons',
-        component: Dashboard,
-        meta: {
-          auth: true,
-        },
-      },
-      {
-        path: '/',
+        path: '/notificacoes',
         name: 'notificacoes',
         component: Notificacoes,
         meta: {
@@ -120,15 +113,13 @@ export default [
         },
       },
       {
-        path: '/',
-        name: 'configuracoes',
-        component: Dashboard,
+        path: '/categorias',
+        name: 'categorias',
+        component: Categorias,
         meta: {
           auth: true,
         },
       },
-
-
     ],
   },
 ];

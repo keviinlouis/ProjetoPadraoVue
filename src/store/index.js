@@ -4,6 +4,7 @@ import auth from './auth';
 import usuarios from './usuarios';
 import notificacoes from './notificacoes';
 import administradores from './administradores';
+import categorias from './categorias';
 import axios from 'axios';
 
 Vue.use(Vuex);
@@ -22,6 +23,7 @@ export default new Vuex.Store({
     usuarios,
     notificacoes,
     administradores,
+    categorias,
   },
   state: {
     page: {
