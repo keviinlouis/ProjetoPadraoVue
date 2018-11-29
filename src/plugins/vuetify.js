@@ -47,7 +47,6 @@ Vue.use(Vuetify, {
     primary: '#e5b122',
     dark: '#1d2d3c',
     secondary: '#255ea9',
-    'text-title': '',
     accent: '#7ed321',
     error: '#FF5252',
     info: '#2196F3',

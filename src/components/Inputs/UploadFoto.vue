@@ -10,34 +10,52 @@
 </template>
 
 <script>
-export default {
-  name: 'UploadFoto',
-  methods: {
-    openInputFile() {
-      this.$refs.infoBox.click();
-    },
-    onInputFileChange(e) {
-      const files = e.target.files;
-      this.uploadTmp(files[0]);
-    },
-    async uploadTmp(file) {
-      this.$emit('setLoading', true);
+    import axios from 'axios';
 
-      const response = await this.$store.dispatch('uploadTmp', file);
+    export default {
+        name: 'UploadFoto',
+        methods: {
+            openInputFile() {
+                this.$refs.infoBox.click();
+            },
+            onInputFileChange(e) {
+                const files = e.target.files;
+                this.uploadTmp(files[0]);
+            },
 
-      this.$emit('setLoading', false);
+            async removeTmp(store, fileName) {
+                await axios.post(`removeTmp/${fileName}`);
+            },
+            async uploadTmp(file) {
+                this.$emit('setLoading', true);
 
-      const data = response.getData();
+                const formData = new FormData();
 
-      if (response.isSuccess()) {
-        this.$emit('uploaded', data);
-        return true;
-      }
+                formData.append('file', file);
 
-      return false;
-    },
-  },
-};
+                const response = await axios({
+                    url: 'api/utils/uploadTmp',
+                    baseURL: process.env.VUE_APP_URL_BASE,
+                    method: 'post',
+                    headers: {
+                        'content-type': 'multipart/form-data',
+                    },
+                    data: formData,
+                });
+
+                this.$emit('setLoading', false);
+
+                const data = response.getData();
+
+                if (response.isSuccess()) {
+                    this.$emit('uploaded', data);
+                    return true;
+                }
+
+                return false;
+            },
+        },
+    };
 </script>
 
 <style scoped>

@@ -107,6 +107,7 @@ export default [
         component: Administradores,
         meta: {
           auth: true,
+          master: true
         },
       },
       {
@@ -115,6 +116,7 @@ export default [
         component: Administrador,
         meta: {
           auth: true,
+          master: true
         },
       },
       {

@@ -2,8 +2,14 @@
     <v-card>
         <v-container>
             <v-layout row wrap mt-1>
-                <v-flex md2></v-flex>
-                <v-flex md5>
+                <v-flex md2>
+                    <upload-foto v-on:uploaded="fotoUpdated">
+                        <v-avatar :src="administrador.url_foto" height="150"/>
+                    </upload-foto>
+                </v-flex>
+            </v-layout>
+            <v-layout row wrap mt-3>
+                <v-flex md6>
                     <v-text-field
                             name="nome"
                             :label="$t('label.nome_completo')"
@@ -15,7 +21,7 @@
                 </v-flex>
             </v-layout>
             <v-layout row wrap mt-3>
-                <v-flex md5>
+                <v-flex md6>
                     <v-text-field
                             name="email"
                             :label="$t('label.email')"
@@ -27,13 +33,12 @@
                 </v-flex>
             </v-layout>
             <v-layout>
-                <v-flex xs12>
+                <v-flex md3 mr-3>
                     <v-text-field id="senha"
-                                  prepend-icon="lock"
                                   ref="senha"
                                   name="senha"
                                   :label="$t('label.senha')"
-                                  v-model="form.senha"
+                                  v-model="administrador.senha"
                                   v-validate="'required|min:6'"
                                   :error-messages="errors.first('senha')"
                                   :append-icon="showSenha ? 'visibility_off' : 'visibility'"
@@ -41,12 +46,11 @@
                                   :type="showSenha ? 'text' : 'password'">
                     </v-text-field>
                 </v-flex>
-                <v-flex xs12>
+                <v-flex md3>
                     <v-text-field id="confirmar_senha"
-                                  prepend-icon="lock"
                                   name="confirmar_senha"
                                   :label="$t('label.confirmar_senha')"
-                                  v-model="form.senha_confirmation"
+                                  v-model="administrador.senha_confirmation"
                                   v-validate="'required|min:6|confirmed:senha'"
                                   :error-messages="errors.first('confirmar_senha')"
                                   @keyup.enter="login"
@@ -85,9 +89,11 @@
 
 <script>
   import { mapGetters } from 'vuex';
+  import UploadFoto from '../../components/Inputs/UploadFoto';
 
   export default {
     name: 'Administrador',
+    components: { UploadFoto },
     computed: {
       ...mapGetters({
         administrador: 'administradores/getAdministrador',
@@ -102,15 +108,24 @@
       };
     },
     methods: {
+      fotoUpdated(foto) {
+        this.administrador.url_foto = foto;
+        this.administrador.foto = foto;
+      },
       goBack() {
-        this.$router.push({ name: 'administradores' });
+        this.$router.push({ name: 'admins' });
       },
       async send() {
-        await this.$store.dispatch('administradores/createAdministrador', this.administrador);
+        if (this.administradorId > 0) {
+          return await this.$store.dispatch('administradores/updateAdministrador', this.administrador);
+        }
+        return await this.$store.dispatch('administradores/createAdministrador', this.administrador);
       },
+
       async validateLoginForm() {
         return await this.$validator.validateAll('login');
       },
+
       async sendAdministrador() {
         if (!await this.validateLoginForm() || this.loading) {
           return;
@@ -118,11 +133,15 @@
 
         this.loading = true;
 
-        this.handleResponse(await this.send(), '', () => this.$router.push({ name: 'dashboard' }));
+        const response = this.handleResponse(await this.send(), '', () => this.$router.push({ name: 'admins' }));
 
         this.loading = false;
 
-        this.$store.dispatch('setToast', { text: 'Push enviada com sucesso' });
+        if (response.isSuccess()) {
+          return await this.$store.dispatch('setToast', { text: 'Push enviada com sucesso' });
+        }
+
+        return await this.$store.dispatch('setToast', { text: response.getMessage() });
       },
     },
     created() {
@@ -132,13 +151,17 @@
         this.administradorId = 0;
       }
     },
+    destroyed() {
+      this.$store.dispatch('administradores/unsetAdministrador');
+      this.administradorId = 0;
+    },
     watch: {
       'administradorId': {
         handler(newValue, oldValue) {
           if (newValue > 0) {
             this.$store.dispatch('administradores/loadAdministrador', newValue);
           } else {
-            this.$store.dispatch('administradores/unsetAdministrador', newValue);
+            this.$store.dispatch('administradores/unsetAdministrador');
           }
         },
       },

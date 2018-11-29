@@ -12,16 +12,17 @@
                     <v-layout row wrap mt-3>
                         <v-flex>{{notificacao.mensagem}}</v-flex>
                     </v-layout>
-                </v-card-text>
-                <v-card-text v-if="notificacaoId > 0">
-                    <v-layout row wrap>
-                        <v-flex class="title dark--text">Título do push</v-flex>
-                    </v-layout>
-                    <v-layout row wrap mt-1>
-                        <v-flex>{{notificacao.titulo}}</v-flex>
-                    </v-layout>
-                    <v-layout row wrap mt-3>
-                        <v-flex>{{notificacao.mensagem}}</v-flex>
+                    <v-layout justify-end>
+                        <v-flex md2 pa-2>
+                            <v-btn color="grey darken-1"
+                                   @click="goBack"
+                                   class="font-weight-bold"
+                                   block
+                                   dark
+                                   depressed>
+                                {{$t('btn.cancelar')}}
+                            </v-btn>
+                        </v-flex>
                     </v-layout>
                 </v-card-text>
             </v-card>
@@ -104,7 +105,7 @@
         this.$router.push({name: 'notificacoes'});
       },
       async send(){
-        await this.$store.dispatch('notificacoes/createNotificacao', this.notificacao);
+        return await this.$store.dispatch('notificacoes/createNotificacao', this.notificacao);
       },
       async validateLoginForm() {
         return await this.$validator.validateAll('login');

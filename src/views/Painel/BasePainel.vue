@@ -12,7 +12,7 @@
                     <img src="@/assets/icons/logo.png" alt="logo"/>
                 </v-list-tile>
 
-                <v-list-tile v-for="(menu, i) in menus"
+                <v-list-tile v-for="(menu, i) in menus" v-if="!menu.master || (menu.master && user.is_master)"
                              :key="i"
                              @click="goToRoute(menu.route)"
                              exact
@@ -97,6 +97,7 @@ export default {
           icon: 'fas fa-user-plus',
           name: this.$t('sidebar.admins'),
           route: 'admins',
+          master: true
         },
         {
           icon: 'fas fa-cog',
@@ -106,6 +107,11 @@ export default {
       ],
     };
   },
+    watch: {
+      '$router': function(newValue){
+          this.currentRoute = newValue.currentRoute.name;
+      }
+    }
 };
 </script>
 

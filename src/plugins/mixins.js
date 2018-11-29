@@ -5,11 +5,11 @@ const mixins = {
     handleResponse(response, scope, onSuccess) {
       if (response.isSuccess()) {
         onSuccess();
-        return true;
+        return response;
       }
 
       if (!response.isBadRequest() || !this.form) {
-        return false;
+        return response;
       }
 
       Object.keys(this.form)
@@ -23,6 +23,8 @@ const mixins = {
             });
           }
         });
+
+      return response;
     },
   },
 };

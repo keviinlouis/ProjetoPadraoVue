@@ -25,6 +25,15 @@
           "titulo": "Título do Push"
         }
       }
+    },
+    "administradores": {
+      "title": "Administradores",
+      "table": {
+        "headers": {
+          "nome": "Nome",
+          "email": "Email"
+        }
+      }
     }
   },
   "toast": {
@@ -49,7 +58,9 @@
     "salvar": "Salvar",
     "exportar": "Exportar",
     "suspender": "Suspender",
-    "ativar": "Ativar"
+    "ativar": "Ativar",
+    "novo_admin": "Novo Admin",
+    "novo_push": "Novo Push"
   },
   "label": {
     "email": "Email",

@@ -36,7 +36,20 @@ router.beforeEach((to, from, next) => {
         if (response.isFailed()) {
           store.dispatch('auth/logout').then(() => router.push({ name: 'login' }));
         }
+        if(to.meta.master){
+          const user = store.getters['auth/getUser'];
+
+          if(!user.is_master){
+            return next({ name: 'dashboard' });
+          }
+        }
       });
+    }else if(to.meta.master){
+      const user = store.getters['auth/getUser'];
+
+      if(!user.is_master){
+        return next({ name: 'dashboard' });
+      }
     }
     return next();
   }
@@ -46,7 +59,7 @@ router.beforeEach((to, from, next) => {
   }
 
   if (hasJwt && !routeNeedAuth) {
-    // return next({ name: 'dashboard' });
+    return next({ name: 'dashboard' });
   }
 
 

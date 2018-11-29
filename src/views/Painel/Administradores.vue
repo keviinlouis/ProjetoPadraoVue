@@ -114,10 +114,10 @@
         this.pagination.page = this.pagination.totalItems === 0 ? 0 : response.getCurrentPage();
       },
       async showAdministrador(usuario){
-        this.$router.push({name: 'administrador', params: {id: usuario.id}})
+        this.$router.push({name: 'admin', params: {id: usuario.id}})
       },
       async goToNewAdministrador(){
-        this.$router.push({name: 'administrador'})
+        this.$router.push({name: 'admin'})
       }
     },
     created() {
