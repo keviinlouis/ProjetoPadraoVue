@@ -15,6 +15,7 @@ import navigatorLanguage from '@/plugins/navigatorLanguage';
 loadProgressBar();
 
 function makeResponse(data) {
+  console.log(data);
   if (data.response) {
     data = data.response;
   }

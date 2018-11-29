@@ -50,13 +50,21 @@ export default {
     };
   },
 
-  async sendSubcategoria({ commit, dispatch }, data) {
-    console.log(data);
+  async sendSubcategoria({ commit, dispatch }, {categoria_id, nome, id}) {
 
-    if(data.id === 0){
-      return await axios.post('subcategoria', data);
+    const subcategoria = {
+      categoria_id,
+      nome,
+      id
+    };
+
+    console.log(subcategoria);
+
+    if(!id){
+      return await axios.post('subcategoria', subcategoria);
     }
-    return await axios.put('subcategoria/' + data.id, data);
+
+    return await axios.put('subcategoria/' + id, subcategoria);
   },
 
   async deleteSubcategoria({ commit, dispatch }, id) {

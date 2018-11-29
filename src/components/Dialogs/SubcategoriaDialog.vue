@@ -5,17 +5,17 @@
                 <span class="headline">Definir Item</span>
             </v-card-title>
             <v-card-text>
-                <v-layout row wrap pt-5>
+                <v-layout row wrap>
                     <v-flex md5 pa-2>
                         <v-autocomplete
                                 v-model="subcategoria.categoria_id"
-                                :items="categorias"
-                                :loading="loading"
+                                :items="categorias.map(function(item){ return {text: item.nome, value: item.id}})"
                                 color="primary"
                                 outline
-                                item-text="nome"
-                                item-value="id"
+                                name="categoria"
                                 label="Categoria"
+                                v-validate="'required'"
+                                :error-messages="errors.first('categoria')"
                         />
                     </v-flex>
                     <v-flex md7 pa-2>
@@ -101,14 +101,20 @@
           return;
         }
 
-        const response = await this.handleResponse(await this.$store.dispatch('categorias/sendSubcategoria', this.subcategoria), '', () => this.close());
+        const response = await this.handleResponse(
+          await this.$store.dispatch('categorias/sendSubcategoria', this.subcategoria),
+          '',
+          () => this.close()
+        );
+
+        console.log(response);
 
         this.loading = false;
 
         if(response.isSuccess()){
           const text = this.subcategoria.id === 0 ? 'Subcategoria criada com sucesso' : 'Subcategoria editada com sucesso';
 
-          this.$store.dispatch('setToast', {text})
+          this.$store.dispatch('setToast', {text});
 
           this.$store.dispatch('categorias/loadCategorias');
         }

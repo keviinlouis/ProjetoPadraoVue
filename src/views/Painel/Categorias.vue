@@ -36,7 +36,7 @@
                         <template slot="items" slot-scope="props">
                             <tr>
                                 <td @click="props.expanded = !props.expanded">
-                                    <v-btn flat icon @click="props.expanded = !props.expanded">
+                                    <v-btn flat icon>
                                         <v-icon>
                                             {{props.expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}
                                         </v-icon>
